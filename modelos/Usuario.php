@@ -24,5 +24,31 @@ class Usuario{
             return "Erro ao cadastrar usuário, tente novamente.";
         }
     }
-  
+
+    // Logar no sistema 
+    public static function login($email, $senha){
+        // Usa a variavel global $pdo para manipular o banco de dados
+        global $pdo ;
+
+        // Preparando uma consulta SQL para buscar os usuários pelo email
+        $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
+
+        // Executa a consulta SQL com o e-mail como parâmetro
+        $stmt->execute([$email]);
+
+        // Obtém o registro do usuário com um array associativo
+        $usuario = $stmt->fetch();
+
+        // Verifica se o usuário foi encontrado no banco de dados
+        if($usuario && password_verify($senha,$usuario['senha'])){
+            // Inicia a sessão PHP para armazenar os dados do usuário
+            session_start();
+            // Armazena as informações capturadas do BD
+            $_SESSION['usuario_id'] = $usuario['id'];
+            $_SESSION['usuario_nome'] = $usuario['nome'];
+
+            return true;
+        }
+        return false;
+    }
 }

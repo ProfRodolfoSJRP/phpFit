@@ -1,0 +1,32 @@
+<?php
+// Inclui o arquivo de configurações Principal do Projeto.
+require_once '../configuracao.php';
+
+// Inclui o modelo 'usuario', que contem as regras de negocios 
+// Contem os comandos para Cadastrar, Login
+
+require_once '../modelos/Usuario.php';
+
+// Verifica se a requisição foi feita usando o método POST
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    // Obtém a ação passada no formulário, como 'cadastrar' ou  'login'.
+    $acao = $_POST['acao'];
+
+    // Se a ação for "cadastrar", executa o fluxo de cadastro de usuário
+    if($acao == 'cadastrar'){
+        // Óbtem os dados enviados pelo formulário de cadastro
+        $nome = $_POST['nome']; // Nome do usuario.
+        $email = $_POST['email']; // Email do usuário
+        $senha = $_POST['senha'];
+
+        // Chama o Método cadastrar da classe usuário que esta no modelo usuario
+        $resultado = Usuario::cadastrar($nome,$email,$senha);
+        // Se o cadastro for bem sucedido retorna true
+        if($resultado === true){
+            // Redireciona o usuário para a página de login com uma mensagem 
+            header("Location: ".BASE_URL."visoes/login.php?msg=Cadastrado");
+        }else{
+            header("Location: ".BASE_URL."visoes/login.php?msg=ERRO!");
+        }
+    }
+}

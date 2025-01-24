@@ -72,4 +72,13 @@ class Usuario{
         }
         return false;
     }
+
+    // Metodo para sair do sistema
+    public static function logout(){
+        session_start();
+
+        session_unset();
+
+        session_destroy();
+    }
 }

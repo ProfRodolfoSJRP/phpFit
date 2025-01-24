@@ -29,4 +29,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             header("Location: ".BASE_URL."visoes/login.php?msg=ERRO!");
         }
     }
+
+    else if($acao == 'login'){
+        // Óbtem os dados enviados pelo formulário de cadastro
+        $email = $_POST['email']; // Email do usuário
+        $senha = $_POST['senha'];
+
+        // Chama o Método cadastrar da classe usuário que esta no modelo usuario
+        $resultado = Usuario::login($email,$senha);
+        // Se o cadastro for bem sucedido retorna true
+        if($resultado === true){
+            // Redireciona o usuário para a página de login com uma mensagem 
+            header("Location: ".BASE_URL."visoes/dashboard.php");
+        }else{
+            header("Location: ".BASE_URL."visoes/login.php?msg=Email ou senha errados!");
+        }
+    }
+}
+
+// Código para sair do sistema 
+elseif(isset($_GET['acao']) && $_GET['acao'] == 'logout'){
+    // Chama o metodo logout do modelo 
+    Usuario::logout();
+
+    // Redireciona apos sair do sistema
+    header("Location: ".BASE_URL."index.php");
 }

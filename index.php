@@ -20,6 +20,9 @@ session_start();
             <a href="visoes/dashboard.php">Painel Principal</a>
         </li>
         <li>
+            <a href="visoes/cadastro_exercicio.php">Cadastrar Exercicio</a>
+        </li>
+        <li>
             <a href="controladores/UsuarioControlador.php?acao=logout">Sair</a>
         </li>
         <?php } else { ?>

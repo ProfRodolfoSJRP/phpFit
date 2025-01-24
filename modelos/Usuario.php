@@ -4,9 +4,30 @@ require_once '../configuracao.php';
 
 // Classe que representa um usuário
 class Usuario{
+
+    // Validador de Email - Verifica se já existe no BD
+    public static function emailExiste($email)
+    {
+        // Usa a variavel global para bd
+        global $pdo;
+
+        // Prepara uma consulta no SQL para contar quantos e-mail existem
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuarios where email =?");
+
+        // Executa a consulta SQL 
+        $stmt->execute([$email]);
+
+        // Retorna true se email existe
+        return $stmt->fetchColumn() > 0;
+    }
+
     // Cadastrar um novo usuário
     public static function cadastrar($nome, $email, $senha){
         global $pdo;
+
+        if(self::emailExiste($email)){
+            return "E-mail Já dadastrado ! Digite outro !";
+        }
 
         // Gera uma hash de senha criptografada 
         $hashSenha = password_hash($senha, PASSWORD_DEFAULT);

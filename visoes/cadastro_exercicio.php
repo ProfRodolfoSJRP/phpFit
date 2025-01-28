@@ -6,6 +6,13 @@
     <title>Cadastrar Exercício</title>
 </head>
 <body>
+    
+    <?php 
+    if(isset($_GET['msg'])){
+        echo $_GET['msg'];
+    };
+    ?>
+
     <h1> Cadastrar Exercício </h1>
     <form action="../controladores/ExercicioControlador.php" 
           method="post" enctype="multipart/form-data">
@@ -15,7 +22,7 @@
     <p>Descrição <textarea name="descricao"></textarea></p>
     <p>Imagem <input type="file" name="imagem"></p>
     <p>Vídeo <input type="file" name="video"></p>
-    <button type="submit">Cadastrar</button>
+    <button type="submit" name="acao" value="cadastrar">Cadastrar</button>
 
     </form>
 </body>

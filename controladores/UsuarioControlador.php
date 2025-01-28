@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // Se o cadastro for bem sucedido retorna true
         if($resultado === true){
             // Redireciona o usuário para a página de login com uma mensagem 
-            header("Location: ".BASE_URL."visoes/dashboard.php");
+            header("Location: ".BASE_URL."index.php");
         }else{
             header("Location: ".BASE_URL."visoes/login.php?msg=Email ou senha errados!");
         }

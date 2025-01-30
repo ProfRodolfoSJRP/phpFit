@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         // Óbtem os dados enviados pelo formulário de cadastro
         $nome = $_POST['nome']; // Nome do usuario.
         $email = $_POST['email']; // Email do usuário
-        $senha = $_POST['senha'];
+        $senha = $_POST['rafael'];
 
         // Chama o Método cadastrar da classe usuário que esta no modelo usuario
         $resultado = Usuario::cadastrar($nome,$email,$senha);

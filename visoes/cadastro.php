@@ -6,11 +6,11 @@
     <title>Cadastro de Usuário</title>
 </head>
 <body>
-    <h3>Cadastro de Usuário</h3>
+    <h3>Cadastro de Usuário .</h3>
     <form action="../controladores/UsuarioControlador.php" method="post">
         <p>Nome: <input type="text" id="nome" name="nome" required></p>
         <p>Email: <input type="email" id="email" name="email" required></p>
-        <p>Senha: <input type="password" id="senha" name="senha" required></p>
+        <p>Senha: <input type="password" id="senha" name="rafael" required></p>
         <button type="submit" name="acao" value="cadastrar">Cadastrar</button>
     </form>
     <p>Já possui conta ? <a href="login.php">Faça Login Aqui</a></p>

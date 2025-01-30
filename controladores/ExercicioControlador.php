@@ -11,16 +11,20 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['acao'] === 'cadastrar'){
     $grupo_muscular = $_POST['grupo_muscular'];
     $descricao = $_POST['descricao'];
 
-    $diretorioImagem = '../uploads/imagem/';
-    $diretorioVideo = '../uploads/video/';
+    $diretorioImagem = '../uploads/imagens/';
+    $diretorioVideo = '../uploads/videos/';
 
     // Lógica para subir imagem
     $imagem = null;
 
+    // Vardump -> Exibir valores de uma variavel 
+    // var_dump(uniqid());
+    // exit();
+
     if(!empty($_FILES['imagem']['name'])){
         $nomeImagem = uniqid().'_'.basename($_FILES['imagem']['name']);
         $caminhoImagem = $diretorioImagem.$nomeImagem;
-        move_uploaded_file($_FILE['imagem']['tmp_name'], $caminhoImagem);
+        move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoImagem);
         $imagem = 'uploads/imagens/'.$nomeImagem;
     }
 
@@ -28,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['acao'] === 'cadastrar'){
     if(!empty($_FILES['video']['name'])){
         $nomeVideo = uniqid().'_'.basename($_FILES['video']['name']);
         $caminhoVideo = $diretorioVideo.$nomeVideo;
-        move_uploaded_file($_FILE['video']['tmp_name'], $caminhoVideo);
+        move_uploaded_file($_FILES['video']['tmp_name'], $caminhoVideo);
         $video = 'uploads/videos/'.$nomeVideo;
     }
 

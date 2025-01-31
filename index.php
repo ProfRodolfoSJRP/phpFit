@@ -22,6 +22,11 @@ session_start();
         <li>
             <a href="visoes/cadastro_exercicio.php">Cadastrar Exercicio</a>
         </li>
+
+        <li>
+            <a href="visoes/editar_exercicio.php">Lista de Exercícios</a>
+        </li>
+
         <li>
             <a href="controladores/UsuarioControlador.php?acao=logout">Sair</a>
         </li>
